@@ -6,12 +6,11 @@ import typescript from 'rollup-plugin-typescript2'
 import json from '@rollup/plugin-json'
 import babel from '@rollup/plugin-babel'
 import pkg from './package.json'
-import {terser} from 'rollup-plugin-terser'
 
-const libraryName = pkg.name
-const filePath = 'dist/'+pkg.name+'.';
+const libraryName = pkg.libname;
 
-console.log(pkg.name)
+
+console.log(pkg.libname)
 
 export default {
   input: `src/index.ts`,
@@ -21,13 +20,6 @@ export default {
       name: camelCase(libraryName), 
       format: 'umd', 
       sourcemap: true
-    },
-    { 
-      file: filePath+'umd.min.js',
-      format: 'umd', 
-      sourcemap: true,
-      name: 'version',
-      plugins: [terser()]
     },
     { 
       file: pkg.module, 
